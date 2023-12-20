@@ -17,6 +17,9 @@ router.get('/register', (req, res)=>{
     res.render('register.ejs');
 })
 
+router.get('/stream',authController.isAuthenticated, (req, res)=>{
+    res.render('stream.ejs');
+})
 //Router para los MÉTODOS del CONTROLLER
 router.post('/register', authController.register)
 router.post('/login', authController.login)

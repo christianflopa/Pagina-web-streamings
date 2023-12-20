@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmisión en Vivo</title>
+    <script src="https://cdn.jsdelivr.net/npm/flv.js@latest"></script>
+</head>
+<body>
+    <!-- Contenido de la página -->
+
+    <video id="video-player" controls></video>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var video = document.getElementById('video-player');
+
+            if (flvjs.isSupported()) {
+                var flvPlayer = flvjs.createPlayer({
+                    type: 'flv',
+                    url: 'http://localhost:8000/live/node.flv',
+                });
+
+                flvPlayer.attachMediaElement(video);
+                flvPlayer.load();
+                flvPlayer.play();
+
+                // Otros eventos y manipulaciones del reproductor aquí...
+            } else {
+                console.error('flv.js no es compatible en este navegador.');
+            }
+        });
+    </script>
+
+</body>
+</html>
